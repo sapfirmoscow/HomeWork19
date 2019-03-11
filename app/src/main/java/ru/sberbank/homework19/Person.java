@@ -1,6 +1,7 @@
 package ru.sberbank.homework19;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Person implements Serializable {
 
@@ -43,5 +44,20 @@ public class Person implements Serializable {
 
     public String getFullname() {
         return getName() + " " + getSurname() + " " + getPatronymic();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(mName, person.mName) &&
+                Objects.equals(mSurname, person.mSurname) &&
+                Objects.equals(mPatronymic, person.mPatronymic);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mName, mSurname, mPatronymic);
     }
 }

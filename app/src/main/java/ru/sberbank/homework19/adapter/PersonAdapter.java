@@ -1,6 +1,5 @@
 package ru.sberbank.homework19.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import ru.sberbank.homework19.R;
 public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
 
     private List<Person> mPersons;
-    private Context mContext;
     private OnClickListener mListener;
 
     public PersonAdapter(OnClickListener listener) {
