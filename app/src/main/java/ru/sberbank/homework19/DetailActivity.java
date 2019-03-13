@@ -9,9 +9,9 @@ import android.widget.TextView;
 public class DetailActivity extends AppCompatActivity {
 
     private static final String KEY = "person";
-    TextView mTextViewName;
-    TextView mTextViewSurname;
-    TextView mTextViewPatronymic;
+    private TextView mTextViewName;
+    private TextView mTextViewSurname;
+    private TextView mTextViewPatronymic;
 
     public static final Intent newIntent(Context context, Person person) {
         Intent intent = new Intent(context, DetailActivity.class);

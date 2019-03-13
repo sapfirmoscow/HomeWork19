@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         initListeners();
     }
 
-    private void initListeners() {
+    public void initListeners() {
         mSendButton.setOnClickListener(v -> startActivity(ListActivity.newIntent(MainActivity.this, getPerson())));
     }
 

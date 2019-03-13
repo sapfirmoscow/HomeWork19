@@ -40,10 +40,11 @@ public class ListActivity extends AppCompatActivity {
         people.add(new Person("Анастасия", "Карандаш", "Евгеньевна"));
 
         //наша персона
-        Person person = (Person) getIntent().getExtras().get(KEY);
-        people.add(person);
-
-        mPersonAdapter.addPersons(people);
+        if (getIntent().getExtras() != null) {
+            Person person = (Person) getIntent().getExtras().get(KEY);
+            people.add(person);
+            mPersonAdapter.addPersons(people);
+        }
     }
 
     private void initRecyclerview() {
