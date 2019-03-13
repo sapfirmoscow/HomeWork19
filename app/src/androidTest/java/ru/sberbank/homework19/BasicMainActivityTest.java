@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -24,35 +26,18 @@ public class BasicMainActivityTest {
     public ActivityTestRule<MainActivity> mSignUpActivityActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void firstNameDisplayed() {
+    public void viewsDisplayed() {
         onView(withId(R.id.name)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void lastNameDisplayed() {
         onView(withId(R.id.surname)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void patronymicDisplayed() {
         onView(withId(R.id.patronymic)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void sendButtonDisplayed() {
         onView(withId(R.id.button)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void sendButtonIsEnabled() {
+    public void sendButtonIsEnabledAndClickable() {
         onView(withId(R.id.button)).check(matches(isEnabled()));
-    }
-
-    @Test
-    public void sendButtonIsClickable() {
         onView(withId(R.id.button)).check(matches(isClickable()));
     }
-
     @Test
     public void checkValuesTests() {
         //проверяем поля для ввода
@@ -62,4 +47,20 @@ public class BasicMainActivityTest {
         //кнопку
         onView(withId(R.id.button)).check(matches(withText(R.string.add)));
     }
+
+    //пробегаемся по
+    @Test
+    public void testInput() {
+        onView(withId(R.id.name)).perform(typeText("Alex"));
+        onView(withId(R.id.surname)).perform(typeText("Green"));
+        onView(withId(R.id.patronymic)).perform(typeText("Jonson"));
+        onView(withId(R.id.button)).perform(click());
+
+        onView(withId(R.id.recyclerView)).perform(ActionOnLastListItem.scrollToLastAndThen(click()));
+
+        onView(withId(R.id.detail_name)).check(matches(withText("Alex")));
+        onView(withId(R.id.detail_surname)).check(matches(withText("Green")));
+        onView(withId(R.id.detail_patronymic)).check(matches(withText("Jonson")));
+    }
+
 }
