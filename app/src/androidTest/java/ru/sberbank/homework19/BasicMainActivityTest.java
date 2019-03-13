@@ -48,7 +48,7 @@ public class BasicMainActivityTest {
         onView(withId(R.id.button)).check(matches(withText(R.string.add)));
     }
 
-    //пробегаемся по
+    //пробегаемся по нашему uscase приложения и сравниваем данные
     @Test
     public void testInput() {
         onView(withId(R.id.name)).perform(typeText("Alex"));
